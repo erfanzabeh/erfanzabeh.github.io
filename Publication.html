@@ -5,40 +5,70 @@
     <meta charset="utf-8">
     <title>ErZabeh - Publications</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- css -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <link href="css/jcarousel.css" rel="stylesheet" />
+    <link href="css/flexslider.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+
+
+    <!-- Theme skin -->
+    <link href="skins/default.css" rel="stylesheet" />
+
 </head>
 
 <body>
     <div id="wrapper">
+        <!-- start header -->
+        <header>
+            <div class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><span>Er</span>fun <br><span> Z</span>abeh</a>
+                    </div>
+                    <div class="navbar-collapse collapse ">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="index.html">Home</a></li>
+                            <li><a href="AboutMe.html">About Me</a></li>
+                            <li><a href="Publication.html">Publication</a></li>
+                            <li><a href="Sotries.html">Sotries</a></li>
+                            <li><a href="CV.html">CV</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- end header -->
+
         <!-- Publications section -->
         <section id="publications">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
                         <h4>Publications</h4>
-                        <ul id="publicationList"></ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+                        <ul id="publicationList">
+                            <!-- In Preparation -->
+                            <li><strong>In preparation</strong></li>
+                            <li>E. Zabeh, J. Jacobs*,G.B Ermentrout*, "Computational Benefits of Traveling Waves in ANNs".</li>
+                            <li>Y. Li, E. Zabeh, J. Gottlieb. "Distinct roles of reward and information gains in prioritizing decision-relevant stimuli".</li>
+                            <li>E. Zabeh, J. Jin, R. Lashgari and J. M. Alonso, "Sparse set of axonal afferents sufficiently model thalamocortical development".</li>
+                            <li>E. Zabeh, J.P. Gottlieb*, J. Jacobs*, "Cortical traveling waves regulate the neuronal spiking activity across space and time".</li>
+                            <li>E. Zabeh*, L.Kunz*, J. Jacobs "The essence of egocentric representation of space in networks trained for path-integration".</li>
 
-    <script>
-        // Fetch publications from your CV link (assuming it's in JSON format)
-        $.getJSON('https://drive.google.com/file/d/1Znog8tYQTcdQrCvwORESpzEBkDOjfLiQ/view', function (data) {
-            // Assuming the data structure, adjust as per your CV format
-            var publications = data.publications;
-
-            // Display publications in the HTML page
-            var publicationList = $('#publicationList');
-            publications.forEach(function (publication) {
-                publicationList.append('<li><strong>' + publication.title + '</strong> - ' + publication.authors + '</li>');
-            });
-        });
-    </script>
-</body>
-
-</html>
-
-
+                            <!-- Published -->
+                            <li><strong>Published</strong></li>
+                            <li>15. E. Zabeh, N.C. Foley, J. Jacobs*, J.P. Gottlieb*, Beta traveling waves in monkey frontal and parietal areas encode recent reward history, Nature Communication, 2023.</li>
+                            <li>14. Maas B*, Zabeh E*, Arabshahi S*. QuickTumorNet: Fast Automatic Multi-Class Segmentation of Brain Tumors. Neural Engineering IEEE/EMBS 2021</li>
+                            <li>13. A. Das, E. Zabeh, J. Jacobs. Diverse Spatial Patterns of Traveling Waves Distinguish Cognitive States of Human Memory Representations. [bioRxiv]. 2024</li>
+                            <li>12. Gottlieb J, Cohanpour M, Li Y, Singletary N, E. Zabeh. Curiosity, information demand and attentional priority. Current Opinion in Behavioral Sciences. 2020</li>
+                            <li>11. A. Das, E. Zabeh, J. Jacobs. Detection and analysis of traveling waves in human intracranial EEG oscillations. Handbook of Intracranial EEG for Cognitive Neuroscience, 2023.</li>
+                            <li>10. E. Zabeh*, M. Mahdavi*, H. Coubdar*, R. Lashgari, H. Omrani. Neural and clinical investigation of pregabalin effectivity in treatment of neurological movement disorder [Under review: Frontiers in human neuroscience]. 2022</li>
+                            <li>9. H. Choubdar*, M. Mahdavi*, Z. Rostami*, E. Zabeh, M. Gillies, A. Green, T. Aziz, R. Lashgari. Neural Oscillatory Characteristics of Feedback Associated Activity in Globus Pallidus Interna [Under review: eNeuro]. 2022</li>
+                            <li>8. A. Vafaei, M. Mohammadi, A. Khadir, E. Zabeh, F. Yazdani, M. Khorasani, R. Lashgari. V1 receptive field structure contributes to neuronal response latency [bioRxiv]. 2022.</li>
+                            <li>7. Z. Fazlali, Y. Ranjbar, E. Zabeh, and E. Arabzadeh, Stimulation of Locus Coerule
