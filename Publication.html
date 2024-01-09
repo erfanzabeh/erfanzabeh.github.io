@@ -2,79 +2,41 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<title>Moderna - Bootstrap 3 flat corporate template</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="" />
-	<!-- css -->
-	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-	<link href="css/jcarousel.css" rel="stylesheet" />
-	<link href="css/flexslider.css" rel="stylesheet" />
-	<link href="css/style.css" rel="stylesheet" />
-
-
-	<!-- Theme skin -->
-	<link href="skins/default.css" rel="stylesheet" />
-
+    <meta charset="utf-8">
+    <title>ErZabeh - Publications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
-	
+
 <body>
-	<div id="wrapper">
-		<!-- start header -->
-		<header>
-			<div class="navbar navbar-default navbar-static-top">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-						<a class="navbar-brand" href="index.html"><span>Er</span>fun <br><span> Z</span>abeh</a>
-					</div>
-					<div class="navbar-collapse collapse ">
-						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="AboutMe.html">About Me</a></li>
-							<!-- <li><a href="Research.html">Research</a></li>-->
-							<li><a href="Publication.html">Publication</a></li>
-							<li><a href="Sotries.html">Sotries</a></li>
-							<!-- <li><a href="Teaching.html">Teaching</a></li>-->
-							<!-- <li><a href="AdressContact.html">Contact</a></li>-->
-							
-							<li><a href="CV.html">CV</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</header>
-		<!-- end header -->
+    <div id="wrapper">
+        <!-- Publications section -->
+        <section id="publications">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h4>Publications</h4>
+                        <ul id="publicationList"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-<!-- Erfun beging section-->
-<section id="content">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8">
-				<h4>News</h4>
+    <script>
+        // Fetch publications from your CV link (assuming it's in JSON format)
+        $.getJSON('https://drive.google.com/file/d/1Znog8tYQTcdQrCvwORESpzEBkDOjfLiQ/view', function (data) {
+            // Assuming the data structure, adjust as per your CV format
+            var publications = data.publications;
 
-				<li>
-					<strong>New preprint posted to PsyArXiv</strong> Work with Josh Jacobs and Anup Das, showing how to calculate traveling waves in human intracranial electroencephalography (iEEG)
-				</li>
-				<p></p>
-				<li>
-					<strong>SfN presenatoin on preliminary result</strong>,In a recent work in colaboration with Josh Jacobs and Jackie Gottlieb, we show preloiminary result that direction of traveling waves influence spiking activity rate! 
-				</li>
-				<p></p>
-				<li>
-					<strong>New preprint posted on BioArxiv</strong>, Work with Jackie Gottlieb and Josh Jacobs, showing aboundance of Traveling Waves in frontopartieal network and their behavioral relevance.
-				</li>
-
-				<p>
-					<small>
-			</div>
-			<div class="col-lg-4">
-
+            // Display publications in the HTML page
+            var publicationList = $('#publicationList');
+            publications.forEach(function (publication) {
+                publicationList.append('<li><strong>' + publication.title + '</strong> - ' + publication.authors + '</li>');
+            });
+        });
+    </script>
 </body>
 
 </html>
