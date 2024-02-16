@@ -49,84 +49,69 @@
 				<!-- Blog Post Section -->
 		<section id="blog-post">
 			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<h2>A buzzword tour of 2021 in Neuro and AI</h2>
-						<p>Between self-supervised approaches for transfer learning, contrastive losses and representational similarity analysis, these last few years were as rich in ideas as buzzing with confusing words. Here is a little dictionary to celebrate the end of 2021. If you have time for only one entry, check out the self-supervised learning one above all!</p>
-						<!-- Add more content from the Markdown file here -->
-						<!-- Use appropriate HTML tags to structure the content -->
-					</div>
+				---
+				layout: post
+				title: "Low-rank RNNs in ten minutes"
+				excerpt: This post is an attempt at summarizing results obtained over five years of research in the laboratory of Srdjan Ostojic, at ENS Paris, on the uses of low-rank RNNs, in a ten-minutes read. Let's see if that's enough to catch your interest!
+				use_math: true
+				---
+
+				<p>This post is an attempt at summarizing results obtained over five years of research in the laboratory of Srdjan Ostojic, at ENS Paris, on the uses of low-rank RNNs, in a ten-minutes read. Let's see if that's enough to catch your interest!</p>
+
+				<p><em>This post has been written with invaluable inputs from several lab members, in particular Friedrich Schuessler, Francesca Mastrogiuseppe and Srdjan Ostojic. Many thanks to them!</em></p>
+
+				<h2>Why low-rank RNNs?</h2>
+
+				<p>Artificial neural networks are super cool. They are known for all sorts of computational prowesses, and they also happen to model brain processes quite well. Among artificial neural networks, there are recurrent neural networks (RNNs), which contain a pool of interconnected neurons, whose activity evolves over time. These networks can be trained to perform all sorts of cognitive tasks, and they exhibit activity patterns that are quite similar to what is observed in many brain areas!</p>
+
+				<div class="centrer">
+				<img src="{{site.url}}/assets/lowranksummary/rnn.jpg" width="300"/>
+				<br/>
+				A recurrent neural network is a population of recurrently connected neurons, receiving external inputs and outputting a certain readout (from Beiran et al. 2021b).
 				</div>
+				<br/>
+
+				<p>A common approach nowadays to understand neural computations is the <em>state-space approach</em>: one looks at the collective activity of many neurons in a network as a <em>vector</em> $(x_1(t), \dots, x_N(t))$ in a high-dimensional state-space. It turns out the neural trajectories in this state-space are not random, but stay confined to some particular low-dimensional subspaces, or manifolds. If you are not familiar with these concepts, a lot of places on the internet summarize them very well<sup>[1]</sup>. However, a big remaining mystery is how connections in a network of neurons are able to generate this very organized collective activity, able to solve complex tasks. Indeed, computer scientists have figured out how to train neural connections to get a network to do a certain task, but this doesn't provide a deep understanding of why the obtained connections implement the task, leading some people to coin RNNs as "black-box models".</p>
+
+				<div class="centrer">
+				<img src="{{site.url}}/assets/lowranksummary/statespace.jpg" width="500"/>
+				<br/>
+				Neural state-space: each axis represents one neuron's activity or firing rate (it has much more than 3 dimensions of course). Illustration inspired on (Gallego, J. A., Perich, M. G., Miller, L. E., & Solla, S. A. (2017). Neural manifolds for the control of movement. Neuron, 94(5), 978-984.).
+				</div>
+				<br/>
+
+				<p>A first paper, published by Francesca Matrogiuseppe and Srdjan Ostojic in 2018<sup>[2]</sup>, has shown that low-rank RNNs could be a solution to the mystery. A low-rank RNN is a network whose connections obey particular algebraic properties, namely the connectivity matrix is low-rank, and can be written formally as follows:</p>
+
+				<div>
+				$$
+				\boldsymbol{J} = \boldsymbol{m}^{(1)}{\boldsymbol{n}^{(1)}}^T + \dots + \boldsymbol{m}^{(R)}{\boldsymbol{n}^{(R)}}^T
+				$$
+				</div>
+
+				<p>where $\boldsymbol{m}^{(1)}, \dots, \boldsymbol{m}^{(R)}$ and $\boldsymbol{n}^{(1)}, \dots, \boldsymbol{n}^{(R)}$, all $N$-dimensional, and $R$ is the *rank* of the matrix $\boldsymbol{J}$. Such a decomposition may look cumbersome, but it actually has a lot of advantages. Indeed, although they were not a general subject of study before, low-rank matrices had made many appearances in the history of computational neuroscience and machine learning, and that is no coincidence<sup>[2b]</sup>.</p>
+
+				<div class="centrer">
+				<img src="{{site.url}}/assets/lowranksummary/lorank.jpg" width="500"/>
+				<br/>
+				A low-rank matrix can be written as a sum of outer products of vectors. From (Beiran et al., 2021b)
+				</div>
+				<br/>
+
+				<p>In their paper, Francesca and Srdjan show that low-rank RNNs have provably low-dimensional patterns of activity, and that they can be designed to accomplish many interesting tasks like Go-NoGo or stimulus detection. An extensive mean-field theory showed that the statistics of connectivity could be linked to the dynamics of the network, paving the way for a deeper understanding of neural computations. Many papers followed, deepening different aspects of that theory, and it is now a good time to wrap up what we know about them, and what they can bring to neuroscience. I will cover some interesting tidbits about low-rank RNNs in a first part, and then give a quick overview of what the different papers are about.</p>
+
+				<h2>Some properties of low-rank RNNs</h2>
+
+				<ul>
+				<li><strong>Low-dimensional dynamics</strong></li>
+				<p>Low-rank RNNs are defined in terms of vectors. There are the recurrent connectivity vectors, namely the $\boldsymbol{m}^{(r)}$ and the $\boldsymbol{n}^{(r)}$ we mentioned before, and also some input vectors $\boldsymbol{I}^{(s)}$ feeding external signals to the RNN. An essential property, easy to prove mathematically, is that the neural activity vector $\boldsymbol{x}(t)$ in a low-rank RNN is constrained to lie in subspace spanned by the $\boldsymbol{m}^{(r)}$ vectors and by the $\boldsymbol{I}^{(s)}$ vectors. We can decompose this space into a *recurrently-driven subspace* and an *input-driven subspace*, which together explain all of the activity in an RNN.</p>
+				<div class="centrer">
+					<img src="{{site.url}}/assets/lowrank
+
+				
 			</div>
 		</section>
 		<!-- End Blog Post Section -->
 
-
-        <!-- Publications section -->
-        <section id="publications">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h4>Publications</h4>
-						<!-- divider -->
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="solidline">
-								</div>
-							</div>
-						</div>
-						<!-- end divider -->
-                        <ul id="publicationList">
-                            <!-- In Preparation -->
-							<strong>In preparation</strong>
-							<p>
-
-							</p>
-							<ol reversed>	
-                            <li><strong>E. Zabeh</strong>, J. Jacobs*,G.B Ermentrout*, "Computational Benefits of Traveling Waves in ANNs".</li>
-                            <li>Y. Li, <strong>E. Zabeh</strong>, J. Gottlieb. "Distinct roles of reward and information gains in prioritizing decision-relevant stimuli".</li>
-                            <li><strong>E. Zabeh</strong>, J. Jin, R. Lashgari and J. M. Alonso, "Sparse set of axonal afferents sufficiently model thalamocortical development".</li>
-                            <li><strong>E. Zabeh</strong>, J.P. Gottlieb*, J. Jacobs*, "Cortical traveling waves regulate the neuronal spiking activity across space and time".</li>
-                            <li><strong>E. Zabeh</strong>*, L.Kunz*, J. Jacobs "The essence of egocentric representation of space in networks trained for path-integration".</li>
-							</ol>	
-							<p></p>
-							
-							<!-- divider -->
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="solidline">
-									</div>
-								</div>
-							</div>
-							<!-- end divider -->
-                            <!-- Published -->
-							<strong>Published</strong>
-							<p> </p>
-							<ol reversed>	
-                            	<li><strong>E. Zabeh</strong>, N.C. Foley, J. Jacobs*, J.P. Gottlieb*, Beta traveling waves in monkey frontal and parietal areas encode recent reward history, Nature Communication, 2023.</li>
-                            	<li>Maas B*, <strong>Zabeh E</strong>*, Arabshahi S*. QuickTumorNet: Fast Automatic Multi-Class Segmentation of Brain Tumors. Neural Engineering IEEE/EMBS 2021</li>
-                            	<li>A. Das, <strong>E. Zabeh</strong>, J. Jacobs. Diverse Spatial Patterns of Traveling Waves Distinguish Cognitive States of Human Memory Representations. [bioRxiv]. 2024</li>
-                            	<li>Gottlieb J, Cohanpour M, Li Y, Singletary N, <strong>E. Zabeh</strong>. Curiosity, information demand and attentional priority. Current Opinion in Behavioral Sciences. 2020</li>
-                            	<li>A. Das, <strong>E. Zabeh</strong>, J. Jacobs. Detection and analysis of traveling waves in human intracranial EEG oscillations. Handbook of Intracranial EEG for Cognitive Neuroscience, 2023.</li>
-                            	<li><strong>E. Zabeh</strong>*, M. Mahdavi*, H. Coubdar*, R. Lashgari, H. Omrani. Neural and clinical investigation of pregabalin effectivity in treatment of neurological movement disorder [Under review: Frontiers in human neuroscience]. 2022</li>
-                            	<li>H. Choubdar*, M. Mahdavi*, Z. Rostami*, <strong>E. Zabeh</strong>, M. Gillies, A. Green, T. Aziz, R. Lashgari. Neural Oscillatory Characteristics of Feedback Associated Activity in Globus Pallidus Interna [Under review: eNeuro]. 2022</li>
-                            	<li>A. Vafaei, M. Mohammadi, A. Khadir, <strong>E. Zabeh</strong>, F. Yazdani, M. Khorasani, R. Lashgari. V1 receptive field structure contributes to neuronal response latency [bioRxiv]. 2022.</li>
-                            	<li>Z. Fazlali, Y. Ranjbar, <strong>E. Zabeh</strong>, and E. Arabzadeh, Stimulation of Locus Coeruleus Noradrenergic System Modulates Sensory Processing and Brain State in two different time scales, eLife [under review],2022.</li>
-								<li><strong>E. Zabeh</strong>*, M. Kheirkhah*, P. Delavari*, A. Ghazizadeh. EEG Alpha waves are induced by activities in superficial depths of the cerebral cortex [preprint]. 2019</li>
-								<li>Rad PN, Behzadi F, Yazdanfar A, Ghamari H, <strong>Zabeh E</strong>, Lashgari R. Cognitive and perceptual influences of architectural and urban environments with an emphasis on the experimental procedures and techniques. Journal of Environmental Psychology 2021</li>
-								<li>Mahdavi M*, Choubdar H*, <strong>Zabeh E</strong>*, Rieder M, Safavi-Naeini S, Khanlarzadeh V, Jobbagy Z, Ghorbani A, Abedini A, Kiani A, Lashgari R. A machine learning based exploration of COVID-19 mortality risk. PLOS ONE 2021</li>
-								<li>Hashemi SM, Pirmoradi A, <strong>Zabeh E</strong>. Chaos Control in Virtual Cathode Oscillator by Cathode Structural Optimization. PIERS 2015, Prague</li>
-								<li>GBD research group, "Mapping 123 million neonatal, infant and child deaths between 2000 and 2017." Nature</li>
-								<li>GBD research group, Global, regional, and national cancer incidence, mortality, years of life lost, years lived with disability, and disability-adjusted life-years for 29 cancer groups, 1990 to 2017, JAMA oncology</li>
-							</ol>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		</section>
-		<!-- End Publications section -->
-		
 		<!-- Erfun ending section -->
 		<section id="footer">
 			<div class="container">
