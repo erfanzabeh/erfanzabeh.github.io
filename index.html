@@ -276,13 +276,8 @@
   <!-- Left Sidebar: Twitter Feed -->
   <div class="left-sidebar">
     <div class="twitter-feed-container">
-      <h3>Latest Tweets</h3>
-      <a class="twitter-timeline" data-height="600" data-theme="light" href="https://twitter.com/zabeherfan">Tweets by @zabeherfan</a>
-      <noscript>
-        <p style="font-size: 13px; text-align: center; padding: 1rem; color: #666;">
-          <a href="https://twitter.com/zabeherfan" target="_blank">Follow @zabeherfan on Twitter/X →</a>
-        </p>
-      </noscript>
+      <h3>📱 Latest Tweets</h3>
+      <a class="twitter-timeline" data-height="550" href="https://twitter.com/zabeherfan">Tweets by @zabeherfan</a>
     </div>
   </div>
 
@@ -514,39 +509,15 @@ async function loadScholarFeed() {
 // Load feed when page loads
 document.addEventListener('DOMContentLoaded', loadScholarFeed);
 
-// Load Twitter widget with multiple retry attempts
-function loadTwitterWidget() {
-  if (window.twttr && window.twttr.widgets) {
-    window.twttr.widgets.load();
-    return true;
-  }
-  return false;
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  // Try to load immediately
-  if (!loadTwitterWidget()) {
-    // If twttr not loaded yet, load the script
-    const script = document.createElement('script');
-    script.src = 'https://platform.twitter.com/widgets.js';
-    script.charset = 'utf-8';
-    script.async = true;
-    script.onload = function() {
-      // Retry after script loads
-      setTimeout(loadTwitterWidget, 100);
-    };
-    document.body.appendChild(script);
-  }
-});
-
-// Also try on window load event for extra safety
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    if (window.twttr && window.twttr.widgets) {
-      window.twttr.widgets.load();
-    }
-  }, 500);
-});
+// Load Twitter widget
+(function() {
+  const script = document.createElement('script');
+  script.src = 'https://platform.twitter.com/widgets.js';
+  script.charset = 'utf-8';
+  script.async = true;
+  script.defer = true;
+  document.body.appendChild(script);
+})();
 </script>
 
 </body>
