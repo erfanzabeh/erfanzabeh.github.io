@@ -141,6 +141,12 @@
     .twitter-timeline {
       border-radius: 4px !important;
       border: 1px solid #ddd !important;
+      display: block !important;
+    }
+
+    iframe[id^="twitter-widget"] {
+      border-radius: 4px;
+      border: 1px solid #ddd;
     }
 
     h1 {
@@ -484,14 +490,24 @@ async function loadScholarFeed() {
 document.addEventListener('DOMContentLoaded', loadScholarFeed);
 
 // Load Twitter widget
-if (window.twttr) {
-  twttr.widgets.load();
-} else {
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.twttr && window.twttr.widgets) {
+    window.twttr.widgets.load();
+  }
+});
+
+// Ensure script loads and initializes
+if (!window.twttr) {
   const script = document.createElement('script');
   script.src = 'https://platform.twitter.com/widgets.js';
   script.charset = 'utf-8';
   script.async = true;
-  document.body.appendChild(script);
+  script.onload = function() {
+    if (window.twttr && window.twttr.widgets) {
+      window.twttr.widgets.load();
+    }
+  };
+  document.head.appendChild(script);
 }
 </script>
 
