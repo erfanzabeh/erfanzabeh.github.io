@@ -154,6 +154,26 @@
       font-size: 0.95rem;
     }
 
+    .twitter-item {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .twitter-item:last-child {
+      border-bottom: none;
+    }
+
+    .twitter-item a {
+      color: #8B2E2E;
+      text-decoration: none;
+    }
+
+    .twitter-item a:hover {
+      text-decoration: underline;
+    }
+
     /* Twitter Embed Styles */
     .twitter-timeline {
       border-radius: 4px !important;
@@ -277,7 +297,9 @@
   <div class="left-sidebar">
     <div class="twitter-feed-container">
       <h3>📱 Latest Tweets</h3>
-      <a class="twitter-timeline" data-height="550" href="https://twitter.com/zabeherfan">Tweets by @zabeherfan</a>
+      <div id="twitterFeed" style="max-height: 550px; overflow-y: auto;">
+        <div style="padding: 1rem; text-align: center; color: #666;">Loading tweets...</div>
+      </div>
     </div>
   </div>
 
@@ -507,17 +529,69 @@ async function loadScholarFeed() {
 }
 
 // Load feed when page loads
-document.addEventListener('DOMContentLoaded', loadScholarFeed);
+document.addEventListener('DOMContentLoaded', function() {
+  loadScholarFeed();
+  loadTwitterFeed();
+});
 
-// Load Twitter widget
-(function() {
-  const script = document.createElement('script');
-  script.src = 'https://platform.twitter.com/widgets.js';
-  script.charset = 'utf-8';
-  script.async = true;
-  script.defer = true;
-  document.body.appendChild(script);
-})();
+// Fetch and display Twitter feed
+async function loadTwitterFeed() {
+  try {
+    // Using nitter (privacy-focused Twitter frontend) RSS feed
+    const twitterHandle = 'zabeherfan';
+    const feedUrl = `https://nitter.net/${twitterHandle}/rss`;
+    
+    // Use CORS proxy to fetch the feed
+    const corsUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(feedUrl);
+    const response = await fetch(corsUrl);
+    const data = await response.json();
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
+    
+    const items = xmlDoc.getElementsByTagName('item');
+    let html = '';
+    
+    if (items.length === 0) {
+      html = '<div style="padding: 1rem; text-align: center; color: #666;">No tweets found. <a href="https://twitter.com/zabeherfan" target="_blank">Follow on Twitter/X →</a></div>';
+    } else {
+      for (let i = 0; i < Math.min(items.length, 8); i++) {
+        const item = items[i];
+        const title = item.getElementsByTagName('title')[0]?.textContent || '';
+        const link = item.getElementsByTagName('link')[0]?.textContent || '#';
+        const pubDate = item.getElementsByTagName('pubDate')[0]?.textContent || '';
+        
+        // Format date
+        const date = new Date(pubDate);
+        const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        
+        // Clean up tweet text (remove author name at start)
+        const tweetText = title.replace(/^zabeherfan:?\s*/, '').substring(0, 150);
+        
+        html += `
+          <div class="twitter-item">
+            <p style="margin: 0 0 0.5rem 0; line-height: 1.4; font-size: 14px;">${tweetText}${tweetText.length === 150 ? '...' : ''}</p>
+            <a href="${link}" target="_blank" style="font-size: 12px; color: #999;">
+              ${dateStr}
+            </a>
+          </div>
+        `;
+      }
+    }
+    
+    document.getElementById('twitterFeed').innerHTML = html;
+  } catch (error) {
+    document.getElementById('twitterFeed').innerHTML = `
+      <div style="padding: 1rem; font-size: 13px;">
+        <p style="margin: 0 0 0.5rem 0; color: #666;">
+          Follow for latest updates
+        </p>
+        <a href="https://twitter.com/zabeherfan" target="_blank" style="display: inline-block; background: #1DA1F2; color: white; padding: 0.5rem 1rem; border-radius: 20px; text-decoration: none; font-weight: 500; font-size: 12px;">
+          @zabeherfan on Twitter/X
+        </a>
+      </div>
+    `;
+  }
+}
 </script>
 
 </body>
