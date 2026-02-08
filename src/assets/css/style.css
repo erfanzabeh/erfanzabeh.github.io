@@ -104,6 +104,15 @@ a:hover {
   margin-bottom: 2rem;
 }
 
+/* Intro Section */
+.intro-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+
 /* Header & Navigation */
 header {
   background-color: var(--white);
@@ -556,6 +565,7 @@ footer a:hover {
 #backToTop:hover { transform: translateY(-4px); }
 
 /* Nav helper classes (replace inline styles) */
+.nav-start { width: 60px; }
 .nav-center { flex: 1; display: flex; gap: 2rem; justify-content: center; }
 .nav-end { width: 60px; }
 
