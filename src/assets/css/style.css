@@ -67,7 +67,7 @@ a:hover {
   margin: 0 auto;
   padding: 3rem 2rem;
   display: grid;
-  grid-template-columns: 1fr 2fr 280px;
+  grid-template-columns: 250px 1fr 280px;
   gap: 3rem;
 }
 
@@ -79,16 +79,16 @@ a:hover {
 
 /* Sidebar Styles */
 .left-sidebar {
-  flex: 0 0 250px;
+  width: 100%;
 }
 
 .main-content {
-  flex: 1;
+  width: 100%;
   min-width: 0;
 }
 
 .right-sidebar {
-  flex: 0 0 280px;
+  width: 100%;
   position: sticky;
   top: 120px;
   height: fit-content;
@@ -359,6 +359,16 @@ footer a:hover {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr 2fr;
+  }
+  
+  .right-sidebar {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-menu {
     gap: 1rem;
@@ -389,6 +399,11 @@ footer a:hover {
 
   .container {
     padding: 0 1rem;
+    grid-template-columns: 1fr;
+  }
+  
+  .left-sidebar {
+    display: none;
   }
 
   .grid {
