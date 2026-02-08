@@ -91,16 +91,52 @@ function initBackToTop() {
 
 // Simple RSS feed loader that uses a public CORS proxy (AllOrigins)
 // Elements that should load feeds must have a `data-rss` attribute with the feed URL.
+// Supports caching via data-cache-hours attribute (default: no cache for Twitter, 24h for Scholar)
 function loadAllFeeds() {
   const feeds = document.querySelectorAll('[data-rss]');
   feeds.forEach(el => {
     const url = el.getAttribute('data-rss');
     if (!url) return;
-    loadRssFeed(url, el);
+    const cacheHours = parseInt(el.getAttribute('data-cache-hours') || '0', 10);
+    loadRssFeed(url, el, 8, cacheHours);
   });
 }
 
-function loadRssFeed(feedUrl, containerEl, maxItems = 8) {
+// Cache helper functions
+function getCachedFeed(url) {
+  try {
+    const cached = localStorage.getItem('feed_' + url);
+    if (!cached) return null;
+    const data = JSON.parse(cached);
+    if (Date.now() > data.expiry) {
+      localStorage.removeItem('feed_' + url);
+      return null;
+    }
+    return data.html;
+  } catch (e) {
+    return null;
+  }
+}
+
+function setCachedFeed(url, html, hours) {
+  try {
+    const expiry = Date.now() + (hours * 60 * 60 * 1000);
+    localStorage.setItem('feed_' + url, JSON.stringify({ html, expiry }));
+  } catch (e) {
+    // localStorage full or unavailable
+  }
+}
+
+function loadRssFeed(feedUrl, containerEl, maxItems = 8, cacheHours = 0) {
+  // Check cache first
+  if (cacheHours > 0) {
+    const cached = getCachedFeed(feedUrl);
+    if (cached) {
+      containerEl.innerHTML = cached;
+      return; // Use cache, skip network request
+    }
+  }
+
   const proxy = 'https://api.allorigins.win/raw?url=';
   fetch(proxy + encodeURIComponent(feedUrl))
     .then(res => {
@@ -114,18 +150,24 @@ function loadRssFeed(feedUrl, containerEl, maxItems = 8) {
       if (!items.length) {
         // Try parsing alternative tags (some feeds use entry)
         const entries = Array.from(xml.querySelectorAll('entry')).slice(0, maxItems);
-        renderFeedEntries(entries, containerEl);
+        renderFeedEntries(entries, containerEl, feedUrl, cacheHours);
       } else {
-        renderFeedItems(items, containerEl);
+        renderFeedItems(items, containerEl, feedUrl, cacheHours);
       }
     })
     .catch(err => {
       console.warn('Feed load failed for', feedUrl, err);
-      containerEl.innerHTML = '<div class="feed-error">Unable to load feed.</div>';
+      // If cache exists (even expired), show it as fallback
+      const cached = getCachedFeed(feedUrl);
+      if (cached) {
+        containerEl.innerHTML = cached;
+      } else {
+        containerEl.innerHTML = '<div class="feed-error" style="padding: 1rem; color: #666;">Unable to load feed.</div>';
+      }
     });
 }
 
-function renderFeedItems(items, container) {
+function renderFeedItems(items, container, feedUrl, cacheHours) {
   const list = document.createElement('div');
   list.className = 'feed-list';
   items.forEach(item => {
@@ -144,9 +186,14 @@ function renderFeedItems(items, container) {
   });
   container.innerHTML = '';
   container.appendChild(list);
+  
+  // Cache the rendered HTML
+  if (cacheHours > 0) {
+    setCachedFeed(feedUrl, container.innerHTML, cacheHours);
+  }
 }
 
-function renderFeedEntries(entries, container) {
+function renderFeedEntries(entries, container, feedUrl, cacheHours) {
   const list = document.createElement('div');
   list.className = 'feed-list';
   entries.forEach(entryEl => {
@@ -165,6 +212,11 @@ function renderFeedEntries(entries, container) {
   });
   container.innerHTML = '';
   container.appendChild(list);
+  
+  // Cache the rendered HTML
+  if (cacheHours > 0) {
+    setCachedFeed(feedUrl, container.innerHTML, cacheHours);
+  }
 }
 
 function stripHtml(html) {
