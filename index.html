@@ -50,38 +50,52 @@
       margin-top: 2rem;
       border: 1px solid #ddd;
       border-radius: 4px;
-      padding: 1.5rem;
-      background: #f9f9f9;
-      text-align: center;
+      padding: 0;
+      background: #fff;
+      max-height: 500px;
+      overflow-y: auto;
     }
 
     .scholar-feed h3 {
-      margin: 0 0 0.5rem 0;
+      margin: 0;
+      padding: 1rem;
+      background: #f9f9f9;
+      border-bottom: 1px solid #ddd;
       font-size: 0.95rem;
-      color: #333;
     }
 
-    .scholar-feed p {
-      margin: 0.5rem 0;
+    .scholar-item {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
       font-size: 13px;
-      color: #666;
+      line-height: 1.4;
     }
 
-    .scholar-feed a {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      background: #8B2E2E;
-      color: white;
-      border-radius: 4px;
-      font-size: 13px;
+    .scholar-item:last-child {
+      border-bottom: none;
+    }
+
+    .scholar-item a {
+      color: #8B2E2E;
+      text-decoration: none;
       font-weight: 600;
-      text-decoration: none;
+      display: block;
+      margin-bottom: 0.3rem;
     }
 
-    .scholar-feed a:hover {
-      background: #6B1E1E;
-      text-decoration: none;
+    .scholar-item a:hover {
+      text-decoration: underline;
+    }
+
+    .scholar-item .authors {
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 0.3rem;
+    }
+
+    .scholar-item .year {
+      color: #999;
+      font-size: 11px;
     }
 
     .profile-photo {
@@ -406,15 +420,69 @@
     <img src="old-content/assets/img/dummies/erfan-2.jpg" alt="Erfan Zabeh" class="profile-photo" />
     
     <!-- Google Scholar Feed -->
-    <div class="scholar-feed">
-      <h3>📊 Google Scholar</h3>
-      <p><strong>View my research profile</strong></p>
-      <p style="font-size: 12px;">Publications, citations & h-index</p>
-      <a href="https://scholar.google.com/citations?user=OVjmBhcAAAAJ" target="_blank">View Profile →</a>
+    <div class="scholar-feed" id="scholarFeed">
+      <h3>📊 Latest Publications</h3>
+      <div style="padding: 1rem; text-align: center; color: #666;">Loading publications...</div>
     </div>
   </div>
 
 </div>
+
+<script>
+// Fetch Google Scholar RSS feed
+async function loadScholarFeed() {
+  const feedUrl = 'https://scholar.google.com/citations?user=OVjmBhcAAAAJ&cstart=0&pagesize=20&view_op=list_works&hl=en&hl=en&sortby=pubdate&pid=2&rss_feed=1';
+  
+  try {
+    // Use CORS proxy since Google Scholar blocks direct CORS requests
+    const corsUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(feedUrl);
+    const response = await fetch(corsUrl);
+    const data = await response.json();
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
+    
+    const items = xmlDoc.getElementsByTagName('item');
+    let html = '<h3>📊 Latest Publications</h3>';
+    
+    if (items.length === 0) {
+      html += '<div style="padding: 1rem; text-align: center; color: #666;">Check Google Scholar for latest publications</div>';
+    } else {
+      for (let i = 0; i < Math.min(items.length, 10); i++) {
+        const item = items[i];
+        const title = item.getElementsByTagName('title')[0]?.textContent || 'Untitled';
+        const link = item.getElementsByTagName('link')[0]?.textContent || '#';
+        const description = item.getElementsByTagName('description')[0]?.textContent || '';
+        
+        // Extract year from description
+        const yearMatch = description.match(/(\d{4})/);
+        const year = yearMatch ? yearMatch[0] : '';
+        
+        html += `
+          <div class="scholar-item">
+            <a href="${link}" target="_blank">${title}</a>
+            <div class="authors">${description.replace(/<[^>]*>/g, '').substring(0, 80)}...</div>
+            ${year ? `<div class="year">${year}</div>` : ''}
+          </div>
+        `;
+      }
+    }
+    
+    document.getElementById('scholarFeed').innerHTML = html;
+  } catch (error) {
+    document.getElementById('scholarFeed').innerHTML = `
+      <h3>📊 Latest Publications</h3>
+      <div style="padding: 1rem;">
+        <p style="font-size: 13px; color: #666; margin: 0;">
+          <a href="https://scholar.google.com/citations?user=OVjmBhcAAAAJ" target="_blank">View on Google Scholar →</a>
+        </p>
+      </div>
+    `;
+  }
+}
+
+// Load feed when page loads
+document.addEventListener('DOMContentLoaded', loadScholarFeed);
+</script>
 
 </body>
 </html>
