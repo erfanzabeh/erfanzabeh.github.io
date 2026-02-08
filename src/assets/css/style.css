@@ -63,15 +63,35 @@ a:hover {
 
 /* Container & Layout */
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr 280px;
+  gap: 3rem;
 }
 
 .container-lg {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
+}
+
+/* Sidebar Styles */
+.left-sidebar {
+  flex: 0 0 250px;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.right-sidebar {
+  flex: 0 0 280px;
+  position: sticky;
+  top: 120px;
+  height: fit-content;
 }
 
 /* Header & Navigation */
