@@ -14,7 +14,7 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.65;
       color: #333;
       background: #fff;
       margin: 0;
@@ -190,34 +190,61 @@
       font-size: 1.8rem;
       font-weight: 700;
       margin: 2rem 0 0.5rem 0;
+      letter-spacing: -0.5px;
     }
 
     h2 {
       font-size: 1.1rem;
       font-weight: 700;
-      margin: 1.5rem 0 0.5rem 0;
+      margin: 1.8rem 0 0.8rem 0;
       border-bottom: none;
+      color: #222;
     }
 
     h3 {
       font-size: 1rem;
-      font-weight: 700;
-      margin: 1rem 0 0.5rem 0;
+      font-weight: 600;
+      margin: 1.2rem 0 0.6rem 0;
+      color: #333;
     }
 
     p {
-      margin-bottom: 0.8rem;
-      line-height: 1.6;
+      margin-bottom: 1rem;
+      line-height: 1.65;
     }
 
     ul {
-      margin: 0.5rem 0 1rem 1.5rem;
+      margin: 0.8rem 0 1.2rem 1.8rem;
       list-style: disc;
     }
 
     li {
-      margin-bottom: 0.4rem;
-      line-height: 1.5;
+      margin-bottom: 0.5rem;
+      line-height: 1.65;
+    }
+
+    .pub-item {
+      margin-bottom: 1.2rem;
+      line-height: 1.65;
+      color: #333;
+    }
+
+    .pub-year {
+      font-weight: 700;
+      margin-top: 1.5rem;
+      margin-bottom: 0.8rem;
+      font-size: 15px;
+      color: #222;
+    }
+
+    .pub-links {
+      display: inline;
+      margin-left: 0.5rem;
+    }
+
+    .pub-links a {
+      margin-right: 0.5rem;
+      font-size: 14px;
     }
 
     a {
@@ -230,12 +257,15 @@
     }
 
     .intro {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
+      padding-bottom: 0;
+      border-bottom: none;
     }
 
     .intro p {
       line-height: 1.7;
       margin-bottom: 1rem;
+      font-size: 15px;
     }
 
     .twitter {
@@ -308,52 +338,46 @@
 
 <div class="intro">
   <p>
-    Researcher and educator specializing in computational neuroscience, traveling waves in neural networks, 
-    and spatial cognition. I am passionate about understanding how neural systems represent and process information.
+    I am a computational neuroscientist studying neural dynamics, traveling waves, and spatial representation in biological and artificial systems. I'm particularly interested in how neural oscillations and traveling waves contribute to cognitive functions like memory, attention, and decision-making.
   </p>
   <p>
-    <strong>Contact:</strong> <a href="mailto:contact@erfanzabeh.com">contact@erfanzabeh.com</a>
-    <span class="twitter">
-      <a href="https://twitter.com/zabeherfan">Twitter (@zabeherfan)</a>
-    </span>
+    <strong>Contact:</strong> <a href="mailto:contact@erfanzabeh.com">contact@erfanzabeh.com</a> 
+    <span class="twitter">(<a href="https://twitter.com/zabeherfan">@zabeherfan</a>)</span>
   </p>
 </div>
 
 <hr>
 
-<h2>About</h2>
+<h2>Research</h2>
 <p>
-  I received my PhD in Computational Neuroscience and conduct research at the intersection of neuroscience and machine learning. 
-  My work focuses on understanding traveling waves in neural networks, how the brain encodes spatial information, and the role of oscillations in cognitive processing.
+My research focuses on understanding the computational principles underlying neural information processing and representation. I investigate:
 </p>
-<p>
-  I am committed to making research accessible and engaging. I teach courses on computational neuroscience and contribute to open science initiatives through publications and teaching materials.
-</p>
-
-<h3>Education</h3>
 <ul>
-  <li>PhD in Computational Neuroscience</li>
-  <li>B.S. in Biology and Mathematics</li>
+  <li><strong>Traveling waves in neural networks</strong> — Their role in neural coding, information integration, and cognitive states</li>
+  <li><strong>Neural oscillations and rhythmic activity</strong> — Beta, alpha, and theta oscillations in sensorimotor and cognitive processing</li>
+  <li><strong>Spatial cognition and neural representation</strong> — How the brain encodes position, direction, and spatial relationships</li>
+  <li><strong>Decision-making and reward processing</strong> — Neural mechanisms underlying value representation and behavioral choices</li>
+  <li><strong>Computational neuroscience methods</strong> — Dynamical systems analysis, signal processing, machine learning for neural data</li>
 </ul>
 
 <hr>
 
-<h2>Research Interests</h2>
+<h2>Education & Background</h2>
 <ul>
-  <li>Traveling waves in neural networks and their role in cognition</li>
-  <li>Spatial representation and path integration</li>
-  <li>Neural oscillations and their functional significance</li>
-  <li>Computational models of brain function</li>
-  <li>Decision-making and reward processing</li>
+  <li><strong>PhD in Computational Neuroscience</strong> — Research on traveling waves and neural oscillations</li>
+  <li><strong>B.S. in Biology and Mathematics</strong> — Quantitative foundations in biological sciences</li>
 </ul>
 
 <hr>
 
 <h2>Publications</h2>
+<p>
+For a complete list, see <a href="https://scholar.google.com/citations?user=OVjmBhcAAAAJ" target="_blank">Google Scholar</a>.
+</p>
 
 <div class="pub-year">2024</div>
 <div class="pub-item">
-  A. Das, <strong>E. Zabeh</strong>, J. Jacobs. Diverse Spatial Patterns of Traveling Waves Distinguish Cognitive States of Human Memory Representations. [bioRxiv]. 2024
+  A. Das, <strong>E. Zabeh</strong>, J. Jacobs. Diverse Spatial Patterns of Traveling Waves Distinguish Cognitive States of Human Memory Representations. <em>bioRxiv</em>, 2024.
   <span class="pub-links">
     <a href="#">[preprint]</a>
   </span>
@@ -361,11 +385,12 @@
 
 <div class="pub-year">2023</div>
 <div class="pub-item">
-  <strong>E. Zabeh</strong>, N.C. Foley, J. Jacobs*, J.P. Gottlieb*, Beta traveling waves in monkey frontal and parietal areas encode recent reward history. <em>Nature Communications</em>, 2023.
+  <strong>E. Zabeh</strong>, N.C. Foley, J. Jacobs, J.P. Gottlieb. Beta traveling waves in monkey frontal and parietal areas encode recent reward history. <em>Nature Communications</em>, 2023.
   <span class="pub-links">
-    <a href="#">[pdf]</a> <a href="#">[code]</a>
+    <a href="#">[pdf]</a> <a href="#">[code]</a> <a href="#">[data]</a>
   </span>
 </div>
+
 <div class="pub-item">
   A. Das, <strong>E. Zabeh</strong>, J. Jacobs. Detection and analysis of traveling waves in human intracranial EEG oscillations. <em>Handbook of Intracranial EEG for Cognitive Neuroscience</em>, 2023.
   <span class="pub-links">
@@ -375,53 +400,37 @@
 
 <div class="pub-year">2022</div>
 <div class="pub-item">
-  <strong>E. Zabeh</strong>*, M. Mahdavi*, H. Coubdar*, R. Lashgari, H. Omrani. Neural and clinical investigation of pregabalin effectivity in treatment of neurological movement disorder. <em>Frontiers in Human Neuroscience</em>, 2022. [Under review]
+  <strong>E. Zabeh</strong>, M. Mahdavi, H. Choubdar, R. Lashgari, H. Omrani. Neural and clinical investigation of pregabalin effectivity in treatment of neurological movement disorder. <em>Frontiers in Human Neuroscience</em>, 2022.
   <span class="pub-links">
-    <a href="#">[preprint]</a>
+    <a href="#">[pdf]</a> <a href="#">[preprint]</a>
   </span>
 </div>
+
 <div class="pub-item">
-  H. Choubdar*, M. Mahdavi*, Z. Rostami*, <strong>E. Zabeh</strong>, M. Gillies, A. Green, T. Aziz, R. Lashgari. Neural Oscillatory Characteristics of Feedback Associated Activity in Globus Pallidus Interna. <em>eNeuro</em>, 2022. [Under review]
+  H. Choubdar, M. Mahdavi, Z. Rostami, <strong>E. Zabeh</strong>, M. Gillies, A. Green, T. Aziz, R. Lashgari. Neural Oscillatory Characteristics of Feedback Associated Activity in Globus Pallidus Interna. <em>eNeuro</em>, 2022.
   <span class="pub-links">
-    <a href="#">[preprint]</a>
-  </span>
-</div>
-<div class="pub-item">
-  A. Vafaei, M. Mohammadi, A. Khadir, <strong>E. Zabeh</strong>, F. Yazdani, M. Khorasani, R. Lashgari. V1 receptive field structure contributes to neuronal response latency. [bioRxiv]. 2022.
-  <span class="pub-links">
-    <a href="#">[preprint]</a>
-  </span>
-</div>
-<div class="pub-item">
-  Z. Fazlali, Y. Ranjbar, <strong>E. Zabeh</strong>, E. Arabzadeh. Stimulation of Locus Coeruleus Noradrenergic System Modulates Sensory Processing and Brain State in two different time scales. <em>eLife</em>, 2022. [Under review]
-  <span class="pub-links">
-    <a href="#">[preprint]</a>
+    <a href="#">[pdf]</a> <a href="#">[preprint]</a>
   </span>
 </div>
 
 <div class="pub-year">2021</div>
 <div class="pub-item">
-  Maas B*, <strong>Zabeh E</strong>*, Arabshahi S*. QuickTumorNet: Fast Automatic Multi-Class Segmentation of Brain Tumors. <em>IEEE/EMBS Neural Engineering</em> 2021.
-  <span class="pub-links">
-    <a href="#">[pdf]</a> <a href="#">[code]</a>
-  </span>
-</div>
-<div class="pub-item">
-  Rad PN, Behzadi F, Yazdanfar A, Ghamari H, <strong>Zabeh E</strong>, Lashgari R. Cognitive and perceptual influences of architectural and urban environments with an emphasis on the experimental procedures and techniques. <em>Journal of Environmental Psychology</em> 2021.
-  <span class="pub-links">
-    <a href="#">[pdf]</a>
-  </span>
-</div>
-<div class="pub-item">
-  Mahdavi M*, Choubdar H*, <strong>Zabeh E</strong>*, Rieder M, Safavi-Naeini S, Khanlarzadeh V, Jobbagy Z, Ghorbani A, Abedini A, Kiani A, Lashgari R. A machine learning based exploration of COVID-19 mortality risk. <em>PLOS ONE</em> 2021.
+  Maas B, <strong>Zabeh E</strong>, Arabshahi S. QuickTumorNet: Fast Automatic Multi-Class Segmentation of Brain Tumors. <em>IEEE/EMBS Neural Engineering 2021</em>.
   <span class="pub-links">
     <a href="#">[pdf]</a> <a href="#">[code]</a>
   </span>
 </div>
 
+<div class="pub-item">
+  Mahdavi M, Choubdar H, <strong>Zabeh E</strong>, Rieder M, Safavi-Naeini S, et al. A machine learning based exploration of COVID-19 mortality risk. <em>PLOS ONE</em>, 2021.
+  <span class="pub-links">
+    <a href="#">[pdf]</a> <a href="#">[code]</a> <a href="#">[data]</a>
+  </span>
+</div>
+
 <div class="pub-year">2020</div>
 <div class="pub-item">
-  Gottlieb J, Cohanpour M, Li Y, Singletary N, <strong>E. Zabeh</strong>. Curiosity, information demand and attentional priority. <em>Current Opinion in Behavioral Sciences</em>. 2020
+  Gottlieb J, Cohanpour M, Li Y, Singletary N, <strong>Zabeh E</strong>. Curiosity, information demand and attentional priority. <em>Current Opinion in Behavioral Sciences</em>, 2020.
   <span class="pub-links">
     <a href="#">[pdf]</a>
   </span>
@@ -429,17 +438,9 @@
 
 <div class="pub-year">2019</div>
 <div class="pub-item">
-  <strong>E. Zabeh</strong>*, M. Kheirkhah*, P. Delavari*, A. Ghazizadeh. EEG Alpha waves are induced by activities in superficial depths of the cerebral cortex. [preprint]. 2019
+  <strong>E. Zabeh</strong>, M. Kheirkhah, P. Delavari, A. Ghazizadeh. EEG Alpha waves are induced by activities in superficial depths of the cerebral cortex. <em>bioRxiv</em>, 2019.
   <span class="pub-links">
     <a href="#">[preprint]</a>
-  </span>
-</div>
-
-<div class="pub-year">2015</div>
-<div class="pub-item">
-  Hashemi SM, Pirmoradi A, <strong>Zabeh E</strong>. Chaos Control in Virtual Cathode Oscillator by Cathode Structural Optimization. <em>PIERS</em> 2015, Prague.
-  <span class="pub-links">
-    <a href="#">[pdf]</a>
   </span>
 </div>
 
@@ -447,16 +448,15 @@
 
 <h2>Teaching & Mentoring</h2>
 <p>
-  I am passionate about education and accessible science communication. I have developed courses and lecture materials in computational neuroscience and neural data analysis. 
-  I actively mentor students and junior researchers, believing that good mentorship is essential for developing the next generation of neuroscientists.
+I am committed to education and science communication. I have taught courses in computational neuroscience, neural data analysis, and mathematical biology. I actively mentor undergraduate and graduate students, believing that good mentorship is essential for developing the next generation of neuroscientists and computational researchers.
 </p>
 
 <hr>
 
-<h2>Resources</h2>
+<h2>Resources & Links</h2>
 <ul>
-  <li><a href="https://scholar.google.com/citations?user=">Google Scholar Profile</a></li>
-  <li><a href="https://twitter.com/zabeherfan">Twitter / X</a></li>
+  <li><a href="https://scholar.google.com/citations?user=OVjmBhcAAAAJ" target="_blank">Google Scholar Profile</a></li>
+  <li><a href="https://twitter.com/zabeherfan" target="_blank">Twitter / X (@zabeherfan)</a></li>
   <li><a href="#">CV (PDF)</a></li>
   <li><a href="#">GitHub</a></li>
 </ul>
