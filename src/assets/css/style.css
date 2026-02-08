@@ -568,3 +568,9 @@ footer a:hover {
   border-left-color: var(--secondary-color) !important;
   background: #f5f0f0 !important;
 }
+
+/* Minimal icon links hover */
+.sidebar-section a[title]:hover {
+  color: #333 !important;
+  background: transparent !important;
+}
