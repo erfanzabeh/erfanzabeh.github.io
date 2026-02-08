@@ -558,3 +558,13 @@ footer a:hover {
 /* Nav helper classes (replace inline styles) */
 .nav-center { flex: 1; display: flex; gap: 2rem; justify-content: center; }
 .nav-end { width: 60px; }
+
+/* Sidebar Quick Links */
+.sidebar-section a:hover {
+  background: #f0f0f0 !important;
+}
+
+.sidebar-section div[style*="border-left"]:hover {
+  border-left-color: var(--secondary-color) !important;
+  background: #f5f0f0 !important;
+}
