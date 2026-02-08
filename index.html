@@ -46,6 +46,28 @@
       height: fit-content;
     }
 
+    .scholar-feed {
+      margin-top: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+      max-height: 400px;
+    }
+
+    .scholar-feed h3 {
+      margin: 0;
+      padding: 1rem;
+      background: #f9f9f9;
+      border-bottom: 1px solid #ddd;
+      font-size: 0.95rem;
+    }
+
+    .scholar-feed iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+
     .profile-photo {
       width: 100%;
       height: auto;
@@ -366,6 +388,16 @@
   <!-- Right Sidebar: Profile Photo -->
   <div class="right-sidebar">
     <img src="old-content/assets/img/dummies/erfan-2.jpg" alt="Erfan Zabeh" class="profile-photo" />
+    
+    <!-- Google Scholar Feed -->
+    <div class="scholar-feed">
+      <h3>Google Scholar</h3>
+      <iframe src="https://scholar.google.com/citations?user=YOUR_USER_ID&view_op=list_works" title="Google Scholar Profile"></iframe>
+    </div>
+    
+    <p style="font-size: 13px; color: #666; margin-top: 1rem; text-align: center;">
+      <a href="https://scholar.google.com/citations?user=YOUR_USER_ID" target="_blank">View full profile →</a>
+    </p>
   </div>
 
 </div>
