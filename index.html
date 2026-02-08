@@ -4,331 +4,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Erfan Zabeh — Researcher & Educator</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-      font-size: 15px;
-      line-height: 1.65;
-      color: #333;
-      background: #fff;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 2fr 280px;
-      gap: 3rem;
-      padding: 2rem;
-    }
-
-    .left-sidebar {
-      flex: 0 0 250px;
-    }
-
-    .main-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .right-sidebar {
-      flex: 0 0 280px;
-      position: sticky;
-      top: 2rem;
-      height: fit-content;
-    }
-
-    .scholar-feed {
-      margin-top: 2rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 0;
-      background: #fff;
-      max-height: 500px;
-      overflow-y: auto;
-    }
-
-    .scholar-feed h3 {
-      margin: 0;
-      padding: 1rem;
-      background: #f9f9f9;
-      border-bottom: 1px solid #ddd;
-      font-size: 0.95rem;
-    }
-
-    .scholar-item {
-      padding: 1rem;
-      border-bottom: 1px solid #eee;
-      font-size: 13px;
-      line-height: 1.4;
-    }
-
-    .scholar-item:last-child {
-      border-bottom: none;
-    }
-
-    .scholar-item a {
-      color: #8B2E2E;
-      text-decoration: none;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    .scholar-item a:hover {
-      text-decoration: underline;
-    }
-
-    .scholar-item .authors {
-      color: #666;
-      font-size: 12px;
-      margin-bottom: 0.3rem;
-    }
-
-    .scholar-item .year {
-      color: #999;
-      font-size: 11px;
-    }
-
-    .profile-photo {
-      width: 100%;
-      height: auto;
-      border-radius: 50%;
-      display: block;
-      margin-bottom: 1.5rem;
-      border: 3px solid #8B2E2E;
-      background: #f0f0f0;
-      aspect-ratio: 1;
-      object-fit: cover;
-    }
-
-    .twitter-feed {
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 1rem;
-      background: #f9f9f9;
-      max-height: 600px;
-      overflow-y: auto;
-      font-size: 13px;
-    }
-
-    .twitter-feed h3 {
-      margin-top: 0;
-      font-size: 0.95rem;
-    }
-
-    .twitter-feed a {
-      display: block;
-      margin-bottom: 0.8rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid #eee;
-      line-height: 1.4;
-    }
-
-    .twitter-feed a:last-child {
-      border-bottom: none;
-    }
-
-    .twitter-feed-container {
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 0;
-      background: #fff;
-      max-height: 600px;
-      overflow: hidden;
-    }
-
-    .twitter-feed-container h3 {
-      margin: 0;
-      padding: 1rem;
-      background: #f9f9f9;
-      border-bottom: 1px solid #ddd;
-      font-size: 0.95rem;
-    }
-
-    .twitter-item {
-      padding: 1rem;
-      border-bottom: 1px solid #eee;
-      font-size: 13px;
-      line-height: 1.4;
-    }
-
-    .twitter-item:last-child {
-      border-bottom: none;
-    }
-
-    .twitter-item a {
-      color: #8B2E2E;
-      text-decoration: none;
-    }
-
-    .twitter-item a:hover {
-      text-decoration: underline;
-    }
-
-    /* Twitter Embed Styles */
-    .twitter-timeline {
-      border-radius: 4px !important;
-      border: 1px solid #ddd !important;
-      display: block !important;
-    }
-
-    iframe[id^="twitter-widget"] {
-      border-radius: 4px;
-      border: 1px solid #ddd;
-    }
-
-    h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin: 2rem 0 0.5rem 0;
-      letter-spacing: -0.5px;
-    }
-
-    h2 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin: 1.8rem 0 0.8rem 0;
-      border-bottom: none;
-      color: #222;
-    }
-
-    h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 1.2rem 0 0.6rem 0;
-      color: #333;
-    }
-
-    p {
-      margin-bottom: 1rem;
-      line-height: 1.65;
-    }
-
-    ul {
-      margin: 0.8rem 0 1.2rem 1.8rem;
-      list-style: disc;
-    }
-
-    li {
-      margin-bottom: 0.5rem;
-      line-height: 1.65;
-    }
-
-    .pub-item {
-      margin-bottom: 1.2rem;
-      line-height: 1.65;
-      color: #333;
-    }
-
-    .pub-year {
-      font-weight: 700;
-      margin-top: 1.5rem;
-      margin-bottom: 0.8rem;
-      font-size: 15px;
-      color: #222;
-    }
-
-    .pub-links {
-      display: inline;
-      margin-left: 0.5rem;
-    }
-
-    .pub-links a {
-      margin-right: 0.5rem;
-      font-size: 14px;
-    }
-
-    a {
-      color: #8B2E2E;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .intro {
-      margin-bottom: 1.8rem;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-
-    .intro p {
-      line-height: 1.7;
-      margin-bottom: 1rem;
-      font-size: 15px;
-    }
-
-    .twitter {
-      display: inline;
-      margin-left: 0.5rem;
-    }
-
-    .pub-item {
-      margin-bottom: 1rem;
-      line-height: 1.5;
-    }
-
-    .pub-year {
-      font-weight: 700;
-      margin-top: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .pub-links {
-      display: inline;
-      margin-left: 0.3rem;
-    }
-
-    .pub-links a {
-      margin-right: 0.6rem;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid #ddd;
-      margin: 2rem 0;
-    }
-
-    @media (max-width: 1024px) {
-      .container {
-        grid-template-columns: 1fr 2fr;
-      }
-
-      .right-sidebar {
-        display: none;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-
-      .left-sidebar {
-        display: none;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="src/assets/css/style.css">
 </head>
 <body>
+
+<header>
+  <nav>
+    <a href="#" class="title">Erfan Zabeh</a>
+    <div class="nav-center">
+      <a href="#research-section">Research</a>
+      <a href="#education-section">Education</a>
+      <a href="#publications-section">Publications</a>
+      <a href="#teaching-section">Teaching</a>
+    </div>
+    <div class="nav-end"></div>
+  </nav>
+</header>
 
 <div class="container">
   <!-- Left Sidebar: Twitter Feed -->
   <div class="left-sidebar">
     <div class="twitter-feed-container">
       <h3>📱 Latest Tweets</h3>
-      <div id="twitterFeed" style="max-height: 550px; overflow-y: auto;">
-        <div style="padding: 1rem; text-align: center; color: #666;">Loading tweets...</div>
+      <div id="twitterFeed" class="feed-placeholder" data-rss="https://nitter.net/ZabehErfan/rss" aria-live="polite">
+        <div>Loading tweets...</div>
       </div>
     </div>
   </div>
@@ -351,7 +50,7 @@
 
 <hr>
 
-<h2>Research Program</h2>
+<h2 id="research-section">Research Program</h2>
 <p>
 As artificial neural networks swell to billions of parameters, the theoretical neuroscience toolkit—built to analyze billions of synapses—becomes essential for understanding and advancing today's large language models and foundational models. My research asks: <em>How do neural structures in space (micro-connectomes, traveling-wave modes) and rules in time (plasticity, drift) jointly carve high-dimensional parameter spaces into manifolds that support robust, curiosity-driven intelligence?</em>
 </p>
@@ -367,7 +66,7 @@ As artificial neural networks swell to billions of parameters, the theoretical n
 
 <hr>
 
-<h2>Education</h2>
+<h2 id="education-section">Education</h2>
 <ul>
   <li><strong>PhD, Biomedical Engineering and Biological Science</strong> (2021–2025) — Columbia University. Thesis: <em>Contribution of Traveling Waves in Cognition and Neural Computation</em>. Advisors: Joshua Jacobs and Jacqueline Gottlieb</li>
   <li><strong>M.Sc, Biomedical Engineering</strong> (2019–2021) — Columbia University. Thesis: <em>Cortical Traveling Waves Regulate Spiking Activity across Space and Time</em></li>
@@ -376,7 +75,7 @@ As artificial neural networks swell to billions of parameters, the theoretical n
 
 <hr>
 
-<h2>Publications</h2>
+<h2 id="publications-section">Publications</h2>
 <p>
 For a complete list, see <a href="https://scholar.google.com/citations?user=OVjmBhcAAAAJ" target="_blank">Google Scholar</a>.
 </p>
@@ -549,131 +248,17 @@ From my earliest days in academia, I recognized the profound art of mentorship. 
     <img src="old-content/assets/img/dummies/erfan-2.jpg" alt="Erfan Zabeh" class="profile-photo" />
     
     <!-- Google Scholar Feed -->
-    <div class="scholar-feed" id="scholarFeed">
+    <div class="scholar-feed" id="scholarFeed" data-rss="https://scholar.google.com/citations?user=OVjmBhcAAAAJ&cstart=0&pagesize=20&view_op=list_works&hl=en&sortby=pubdate&rss=1">
       <h3>📊 Latest Publications</h3>
-      <div style="padding: 1rem; text-align: center; color: #666;">Loading publications...</div>
+      <div class="feed-placeholder" aria-live="polite">Loading publications...</div>
     </div>
   </div>
 
 </div>
 
-<script>
-// Fetch Google Scholar RSS feed
-async function loadScholarFeed() {
-  const feedUrl = 'https://scholar.google.com/citations?user=OVjmBhcAAAAJ&cstart=0&pagesize=20&view_op=list_works&hl=en&hl=en&sortby=pubdate&pid=2&rss_feed=1';
-  
-  try {
-    // Use CORS proxy since Google Scholar blocks direct CORS requests
-    const corsUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(feedUrl);
-    const response = await fetch(corsUrl);
-    const data = await response.json();
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
-    
-    const items = xmlDoc.getElementsByTagName('item');
-    let html = '<h3>📊 Latest Publications</h3>';
-    
-    if (items.length === 0) {
-      html += '<div style="padding: 1rem; text-align: center; color: #666;">Check Google Scholar for latest publications</div>';
-    } else {
-      for (let i = 0; i < Math.min(items.length, 10); i++) {
-        const item = items[i];
-        const title = item.getElementsByTagName('title')[0]?.textContent || 'Untitled';
-        const link = item.getElementsByTagName('link')[0]?.textContent || '#';
-        const description = item.getElementsByTagName('description')[0]?.textContent || '';
-        
-        // Extract year from description
-        const yearMatch = description.match(/(\d{4})/);
-        const year = yearMatch ? yearMatch[0] : '';
-        
-        html += `
-          <div class="scholar-item">
-            <a href="${link}" target="_blank">${title}</a>
-            <div class="authors">${description.replace(/<[^>]*>/g, '').substring(0, 80)}...</div>
-            ${year ? `<div class="year">${year}</div>` : ''}
-          </div>
-        `;
-      }
-    }
-    
-    document.getElementById('scholarFeed').innerHTML = html;
-  } catch (error) {
-    document.getElementById('scholarFeed').innerHTML = `
-      <h3>📊 Latest Publications</h3>
-      <div style="padding: 1rem;">
-        <p style="font-size: 13px; color: #666; margin: 0;">
-          <a href="https://scholar.google.com/citations?user=OVjmBhcAAAAJ" target="_blank">View on Google Scholar →</a>
-        </p>
-      </div>
-    `;
-  }
-}
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Back to top">↑</button>
 
-// Load feed when page loads
-document.addEventListener('DOMContentLoaded', function() {
-  loadScholarFeed();
-  loadTwitterFeed();
-});
-
-// Fetch and display Twitter feed
-async function loadTwitterFeed() {
-  try {
-    // Using nitter (privacy-focused Twitter frontend) RSS feed
-    const twitterHandle = 'ZabehErfan';
-    const feedUrl = `https://nitter.net/${twitterHandle}/rss`;
-    
-    // Use CORS proxy to fetch the feed
-    const corsUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(feedUrl);
-    const response = await fetch(corsUrl);
-    const data = await response.json();
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(data.contents, 'text/xml');
-    
-    const items = xmlDoc.getElementsByTagName('item');
-    let html = '';
-    
-    if (items.length === 0) {
-      html = '<div style="padding: 1rem; text-align: center; color: #666;">No tweets found. <a href="https://twitter.com/ZabehErfan" target="_blank">Follow on Twitter/X →</a></div>';
-    } else {
-      for (let i = 0; i < Math.min(items.length, 8); i++) {
-        const item = items[i];
-        const title = item.getElementsByTagName('title')[0]?.textContent || '';
-        const link = item.getElementsByTagName('link')[0]?.textContent || '#';
-        const pubDate = item.getElementsByTagName('pubDate')[0]?.textContent || '';
-        
-        // Format date
-        const date = new Date(pubDate);
-        const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        
-        // Clean up tweet text (remove author name at start)
-        const tweetText = title.replace(/^ZabehErfan:?\s*/, '').substring(0, 150);
-        
-        html += `
-          <div class="twitter-item">
-            <p style="margin: 0 0 0.5rem 0; line-height: 1.4; font-size: 14px;">${tweetText}${tweetText.length === 150 ? '...' : ''}</p>
-            <a href="${link}" target="_blank" style="font-size: 12px; color: #999;">
-              ${dateStr}
-            </a>
-          </div>
-        `;
-      }
-    }
-    
-    document.getElementById('twitterFeed').innerHTML = html;
-  } catch (error) {
-    document.getElementById('twitterFeed').innerHTML = `
-      <div style="padding: 1rem; font-size: 13px;">
-        <p style="margin: 0 0 0.5rem 0; color: #666;">
-          Follow for latest updates
-        </p>
-        <a href="https://twitter.com/ZabehErfan" target="_blank" style="display: inline-block; background: #1DA1F2; color: white; padding: 0.5rem 1rem; border-radius: 20px; text-decoration: none; font-weight: 500; font-size: 12px;">
-          @ZabehErfan on Twitter/X
-        </a>
-      </div>
-    `;
-  }
-}
-</script>
-
+  <script src="src/assets/js/main.js"></script>
 </body>
 </html>

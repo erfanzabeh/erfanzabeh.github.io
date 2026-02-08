@@ -6,6 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Smooth scrolling for anchor links
   initializeSmoothScroll();
+  
+  // Initialize back-to-top button
+  initBackToTop();
+
+  // Initialize simple card animations (if present)
+  initializeCardAnimations();
+
+  // Load any RSS/Nitter feeds on the page
+  loadAllFeeds();
 });
 
 // Navigation Management
@@ -57,6 +66,120 @@ function isElementInViewport(el) {
     rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
+}
+
+// Back-to-top button
+function initBackToTop() {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+
+  function toggle() {
+    if (window.scrollY > 300) {
+      btn.classList.add('show');
+    } else {
+      btn.classList.remove('show');
+    }
+  }
+
+  window.addEventListener('scroll', toggle);
+  toggle();
+
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// Simple RSS feed loader that uses a public CORS proxy (AllOrigins)
+// Elements that should load feeds must have a `data-rss` attribute with the feed URL.
+function loadAllFeeds() {
+  const feeds = document.querySelectorAll('[data-rss]');
+  feeds.forEach(el => {
+    const url = el.getAttribute('data-rss');
+    if (!url) return;
+    loadRssFeed(url, el);
+  });
+}
+
+function loadRssFeed(feedUrl, containerEl, maxItems = 8) {
+  const proxy = 'https://api.allorigins.win/raw?url=';
+  fetch(proxy + encodeURIComponent(feedUrl))
+    .then(res => {
+      if (!res.ok) throw new Error('Network response was not ok');
+      return res.text();
+    })
+    .then(str => {
+      const parser = new window.DOMParser();
+      const xml = parser.parseFromString(str, 'application/xml');
+      const items = Array.from(xml.querySelectorAll('item')).slice(0, maxItems);
+      if (!items.length) {
+        // Try parsing alternative tags (some feeds use entry)
+        const entries = Array.from(xml.querySelectorAll('entry')).slice(0, maxItems);
+        renderFeedEntries(entries, containerEl);
+      } else {
+        renderFeedItems(items, containerEl);
+      }
+    })
+    .catch(err => {
+      console.warn('Feed load failed for', feedUrl, err);
+      containerEl.innerHTML = '<div class="feed-error">Unable to load feed.</div>';
+    });
+}
+
+function renderFeedItems(items, container) {
+  const list = document.createElement('div');
+  list.className = 'feed-list';
+  items.forEach(item => {
+    const title = item.querySelector('title') ? item.querySelector('title').textContent : '';
+    const link = item.querySelector('link') ? item.querySelector('link').textContent : (item.querySelector('link') ? item.querySelector('link').getAttribute('href') : '#');
+    const pubDate = item.querySelector('pubDate') ? item.querySelector('pubDate').textContent : '';
+    const desc = item.querySelector('description') ? item.querySelector('description').textContent : '';
+
+    const entry = document.createElement('div');
+    entry.className = 'feed-item';
+    entry.innerHTML = `<a class="feed-title" href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>` +
+      `<div class="feed-meta"><span class="feed-date">${escapeHtml(pubDate)}</span></div>` +
+      `<div class="feed-desc">${escapeHtml(stripHtml(desc))}</div>`;
+
+    list.appendChild(entry);
+  });
+  container.innerHTML = '';
+  container.appendChild(list);
+}
+
+function renderFeedEntries(entries, container) {
+  const list = document.createElement('div');
+  list.className = 'feed-list';
+  entries.forEach(entryEl => {
+    const title = entryEl.querySelector('title') ? entryEl.querySelector('title').textContent : '';
+    const link = entryEl.querySelector('link') ? (entryEl.querySelector('link').getAttribute('href') || entryEl.querySelector('link').textContent) : '#';
+    const pubDate = entryEl.querySelector('updated') ? entryEl.querySelector('updated').textContent : '';
+    const desc = entryEl.querySelector('summary') ? entryEl.querySelector('summary').textContent : (entryEl.querySelector('content') ? entryEl.querySelector('content').textContent : '');
+
+    const entry = document.createElement('div');
+    entry.className = 'feed-item';
+    entry.innerHTML = `<a class="feed-title" href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>` +
+      `<div class="feed-meta"><span class="feed-date">${escapeHtml(pubDate)}</span></div>` +
+      `<div class="feed-desc">${escapeHtml(stripHtml(desc))}</div>`;
+
+    list.appendChild(entry);
+  });
+  container.innerHTML = '';
+  container.appendChild(list);
+}
+
+function stripHtml(html) {
+  if (!html) return '';
+  return html.replace(/<[^>]+>/g, '');
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 // Add fade-in animation for cards as they appear
