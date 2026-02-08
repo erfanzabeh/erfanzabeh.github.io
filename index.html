@@ -137,6 +137,23 @@
       border-bottom: none;
     }
 
+    .twitter-feed-container {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 0;
+      background: #fff;
+      max-height: 600px;
+      overflow: hidden;
+    }
+
+    .twitter-feed-container h3 {
+      margin: 0;
+      padding: 1rem;
+      background: #f9f9f9;
+      border-bottom: 1px solid #ddd;
+      font-size: 0.95rem;
+    }
+
     /* Twitter Embed Styles */
     .twitter-timeline {
       border-radius: 4px !important;
@@ -258,7 +275,15 @@
 <div class="container">
   <!-- Left Sidebar: Twitter Feed -->
   <div class="left-sidebar">
-    <a class="twitter-timeline" data-height="600" href="https://twitter.com/zabeherfan">Tweets by @zabeherfan</a>
+    <div class="twitter-feed-container">
+      <h3>Latest Tweets</h3>
+      <a class="twitter-timeline" data-height="600" data-theme="light" href="https://twitter.com/zabeherfan">Tweets by @zabeherfan</a>
+      <noscript>
+        <p style="font-size: 13px; text-align: center; padding: 1rem; color: #666;">
+          <a href="https://twitter.com/zabeherfan" target="_blank">Follow @zabeherfan on Twitter/X →</a>
+        </p>
+      </noscript>
+    </div>
   </div>
 
   <!-- Main Content -->
@@ -489,26 +514,39 @@ async function loadScholarFeed() {
 // Load feed when page loads
 document.addEventListener('DOMContentLoaded', loadScholarFeed);
 
-// Load Twitter widget
-document.addEventListener('DOMContentLoaded', function() {
+// Load Twitter widget with multiple retry attempts
+function loadTwitterWidget() {
   if (window.twttr && window.twttr.widgets) {
     window.twttr.widgets.load();
+    return true;
+  }
+  return false;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Try to load immediately
+  if (!loadTwitterWidget()) {
+    // If twttr not loaded yet, load the script
+    const script = document.createElement('script');
+    script.src = 'https://platform.twitter.com/widgets.js';
+    script.charset = 'utf-8';
+    script.async = true;
+    script.onload = function() {
+      // Retry after script loads
+      setTimeout(loadTwitterWidget, 100);
+    };
+    document.body.appendChild(script);
   }
 });
 
-// Ensure script loads and initializes
-if (!window.twttr) {
-  const script = document.createElement('script');
-  script.src = 'https://platform.twitter.com/widgets.js';
-  script.charset = 'utf-8';
-  script.async = true;
-  script.onload = function() {
+// Also try on window load event for extra safety
+window.addEventListener('load', function() {
+  setTimeout(function() {
     if (window.twttr && window.twttr.widgets) {
       window.twttr.widgets.load();
     }
-  };
-  document.head.appendChild(script);
-}
+  }, 500);
+});
 </script>
 
 </body>
