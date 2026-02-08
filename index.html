@@ -252,7 +252,7 @@
 <div class="container">
   <!-- Left Sidebar: Twitter Feed -->
   <div class="left-sidebar">
-    <a class="twitter-timeline" data-height="600" href="https://twitter.com/zabeherfan">Tweets by @zabeherfan</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a class="twitter-timeline" data-height="600" href="https://twitter.com/zabeherfan">Tweets by @zabeherfan</a>
   </div>
 
   <!-- Main Content -->
@@ -482,6 +482,17 @@ async function loadScholarFeed() {
 
 // Load feed when page loads
 document.addEventListener('DOMContentLoaded', loadScholarFeed);
+
+// Load Twitter widget
+if (window.twttr) {
+  twttr.widgets.load();
+} else {
+  const script = document.createElement('script');
+  script.src = 'https://platform.twitter.com/widgets.js';
+  script.charset = 'utf-8';
+  script.async = true;
+  document.body.appendChild(script);
+}
 </script>
 
 </body>
