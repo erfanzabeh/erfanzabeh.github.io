@@ -17,11 +17,21 @@
       line-height: 1.6;
       color: #333;
       background: #fff;
-      max-width: 1200px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 2rem;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 2fr 280px;
       gap: 3rem;
+      padding: 2rem;
+    }
+
+    .left-sidebar {
+      flex: 0 0 250px;
     }
 
     .main-content {
@@ -29,10 +39,11 @@
       min-width: 0;
     }
 
-    .sidebar {
+    .right-sidebar {
       flex: 0 0 280px;
       position: sticky;
       top: 2rem;
+      height: fit-content;
     }
 
     .profile-photo {
@@ -42,6 +53,33 @@
       display: block;
       margin-bottom: 1.5rem;
       border: 1px solid #ddd;
+    }
+
+    .twitter-feed {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      background: #f9f9f9;
+      max-height: 500px;
+      overflow-y: auto;
+      font-size: 13px;
+    }
+
+    .twitter-feed h3 {
+      margin-top: 0;
+      font-size: 0.95rem;
+    }
+
+    .twitter-feed a {
+      display: block;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid #eee;
+      line-height: 1.4;
+    }
+
+    .twitter-feed a:last-child {
+      border-bottom: none;
     }
 
     h1 {
@@ -127,30 +165,54 @@
       margin: 2rem 0;
     }
 
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr 2fr;
+      }
+
+      .right-sidebar {
+        display: none;
+      }
+    }
+
     @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-        gap: 1rem;
+      .container {
+        grid-template-columns: 1fr;
       }
 
-      .sidebar {
-        flex: 0 0 auto;
-        position: static;
-      }
-
-      .profile-photo {
-        max-width: 300px;
+      .left-sidebar {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
 
-<div class="sidebar">
-  <img src="img/slides/1.jpeg" alt="Erfan Zabeh" class="profile-photo" />
-</div>
+<div class="container">
+  <!-- Left Sidebar: Twitter Feed -->
+  <div class="left-sidebar">
+    <div class="twitter-feed">
+      <h3>Latest Tweets</h3>
+      <a href="https://twitter.com/zabeherfan/status/1" target="_blank">
+        <strong>@zabeherfan</strong><br>
+        Excited about new research on traveling waves in neural networks
+      </a>
+      <a href="https://twitter.com/zabeherfan/status/2" target="_blank">
+        <strong>@zabeherfan</strong><br>
+        Great discussion at the neuroscience seminar today
+      </a>
+      <a href="https://twitter.com/zabeherfan/status/3" target="_blank">
+        <strong>@zabeherfan</strong><br>
+        Just published our latest paper on spatial cognition
+      </a>
+      <a href="https://twitter.com/zabeherfan" target="_blank" style="font-weight: 700; border-bottom: none;">
+        Follow on Twitter →
+      </a>
+    </div>
+  </div>
 
-<div class="main-content">
+  <!-- Main Content -->
+  <div class="main-content">
 
 <div class="intro">
   <p>
@@ -306,6 +368,13 @@
   <li><a href="#">CV (PDF)</a></li>
   <li><a href="#">GitHub</a></li>
 </ul>
+
+  </div>
+
+  <!-- Right Sidebar: Profile Photo -->
+  <div class="right-sidebar">
+    <img src="img/slides/1.jpeg" alt="Erfan Zabeh" class="profile-photo" />
+  </div>
 
 </div>
 
