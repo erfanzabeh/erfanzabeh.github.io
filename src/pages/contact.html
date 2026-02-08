@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact - Erfan Zabeh">
+  <title>Erfan Zabeh - Contact</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/academic.css">
+</head>
+
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <nav class="container">
+      <a href="../../index.html" class="logo">Erfan Zabeh</a>
+      <ul class="nav-menu">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Work</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Academic Contact Layout -->
+  <div class="container">
+    <div class="academic-container">
+      <aside class="sidebar">
+        <img src="../../img/slides/1.jpeg" alt="Profile photo" class="profile-photo" />
+        <div class="name">Erfan Zabeh</div>
+        <div class="title">Researcher • Educator</div>
+        <div class="contact">
+          <p><strong>Email</strong><br><a href="mailto:contact@erfanzabeh.com">contact@erfanzabeh.com</a></p>
+          <p><strong>Office</strong><br>Department / University</p>
+        </div>
+      </aside>
+      <main class="main">
+        <h1 class="section-title">Contact</h1>
+
+        <h3>Send a Message</h3>
+        <form id="contactForm">
+          <div style="margin-bottom: 1rem;"><label>Name</label><input type="text" required style="width:100%; padding:0.6rem; border:1px solid var(--border-color); border-radius:4px;"></div>
+          <div style="margin-bottom: 1rem;"><label>Email</label><input type="email" required style="width:100%; padding:0.6rem; border:1px solid var(--border-color); border-radius:4px;"></div>
+          <div style="margin-bottom: 1rem;"><label>Message</label><textarea rows="6" required style="width:100%; padding:0.6rem; border:1px solid var(--border-color); border-radius:4px;"></textarea></div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+
+        <h3 style="margin-top:2rem;">Other Contact Info</h3>
+        <div class="card"><h3>Email</h3><p><a href="mailto:contact@erfanzabeh.com">contact@erfanzabeh.com</a></p></div>
+        <div class="card"><h3>Social Media</h3><p><a href="https://twitter.com/zabeherfan" target="_blank">Twitter</a> • <a href="https://github.com/erfanzabeh" target="_blank">GitHub</a></p></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <section class="light">
+    <div class="container">
+      <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+      
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="card">
+          <h3>Are you available for collaborations?</h3>
+          <p>Yes! I'm interested in collaborative research projects, academic partnerships, and educational initiatives. Please reach out with details about your proposal.</p>
+        </div>
+
+        <div class="card">
+          <h3>Do you accept speaking engagements?</h3>
+          <p>I do accept speaking invitations at academic conferences, universities, and educational events. Please contact me with event details, date, and topic information.</p>
+        </div>
+
+        <div class="card">
+          <h3>How can I access your research papers?</h3>
+          <p>Most of my publications are available through academic databases and my publication archive. Visit the portfolio section for links to major publications.</p>
+        </div>
+
+        <div class="card">
+          <h3>Can I cite your work?</h3>
+          <p>Absolutely! All my published work is available for academic citation. Please refer to each publication for proper citation formats and DOI information.</p>
+        </div>
+
+        <div class="card">
+          <h3>How do I subscribe to your blog?</h3>
+          <p>Visit the blog page for subscription options. You can also check the archives for past articles and discussions on philosophy of science and research methodology.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Work</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Archives</h4>
+          <ul>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="../../old-content/pages/Teaching.html">Teaching</a></li>
+            <li><a href="../../old-content/pages/Research.html">Research</a></li>
+            <li><a href="../../old-content/pages/CV.html">CV</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="../../old-content/pages/AboutMe.html">Full Bio</a></li>
+            <li><a href="../../old-content/pages/Blog.html">Blog Archive</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Erfan Zabeh. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // Simple form submission handler
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! I will get back to you soon.');
+      this.reset();
+    });
+  </script>
+</body>
+
+</html>

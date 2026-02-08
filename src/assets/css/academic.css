@@ -1,0 +1,92 @@
+/* Academic/Hewitt-like layout additions */
+
+.academic-container{
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+}
+
+.sidebar{
+  width: 260px;
+  flex: 0 0 260px;
+}
+
+.profile-photo{
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto 1rem auto;
+  border: 1px solid var(--border-color);
+}
+
+.sidebar .name{
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.25rem;
+}
+
+.sidebar .title{
+  text-align: center;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.sidebar .contact{ 
+  background: var(--light-bg);
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.main{
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.section-title{
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  color: var(--primary-color);
+}
+
+.pub-year{
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.pub-list{
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.pub-list li{
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.pub-list a{
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.pub-list a:hover{ text-decoration: underline; color: var(--accent-color); }
+
+/* Narrow screens: stack */
+@media (max-width: 900px){
+  .academic-container{ flex-direction: column; }
+  .sidebar{ width: 100%; flex: 0 0 auto; }
+  .profile-photo{ width: 160px; height: 160px; }
+}
+
+/* small tweaks for typography */
+.main p, .main li { color: var(--text-light); }
+
