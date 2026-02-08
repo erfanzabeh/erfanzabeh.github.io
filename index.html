@@ -21,9 +21,9 @@
   </nav>
 </header>
 
-<div class="container">
+<div class="container" style="display: flex; max-width: 1400px; margin: 0 auto; padding: 2rem; gap: 2rem;">
   <!-- Left Sidebar: Twitter Feed -->
-  <div class="left-sidebar">
+  <div class="left-sidebar" style="width: 250px; flex-shrink: 0;">
     <div class="twitter-feed-container">
       <h3>📱 Latest Tweets</h3>
       <div id="twitterFeed" class="feed-placeholder" data-rss="https://nitter.net/ZabehErfan/rss" aria-live="polite">
@@ -33,7 +33,7 @@
   </div>
 
   <!-- Main Content -->
-  <div class="main-content">
+  <div class="main-content" style="flex: 1; min-width: 0;">
 
 <div class="intro">
   <p>
@@ -244,8 +244,8 @@ From my earliest days in academia, I recognized the profound art of mentorship. 
   </div>
 
   <!-- Right Sidebar: Profile Photo -->
-  <div class="right-sidebar">
-    <img src="old-content/assets/img/dummies/erfan-2.jpg" alt="Erfan Zabeh" class="profile-photo" />
+  <div class="right-sidebar" style="width: 280px; flex-shrink: 0;">
+    <img src="old-content/assets/img/dummies/erfan-2.jpg" alt="Erfan Zabeh" class="profile-photo" style="width: 100%; border-radius: 50%; border: 4px solid #8B2E2E; margin-bottom: 1.5rem;" />
     
     <!-- Google Scholar Feed -->
     <div class="scholar-feed" id="scholarFeed" data-rss="https://scholar.google.com/citations?user=OVjmBhcAAAAJ&cstart=0&pagesize=20&view_op=list_works&hl=en&sortby=pubdate&rss=1">
